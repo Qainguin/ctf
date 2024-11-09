@@ -24,7 +24,9 @@ const DECELERATION_SPEED = 10.0
 @onready var camera: Camera3D = %Camera
 
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
+
 @onready var death_animator: AnimationPlayer = $DeathOverlay/DeathAnimator
+@onready var blood_animator: AnimationPlayer = $HUD/BloodOverlay/BloodAnimator
 
 @onready var announcer: AudioStreamPlayer = $Announcer
 
@@ -89,6 +91,8 @@ func _physics_process(delta) -> void:
 @rpc("any_peer")
 func hit() -> void:
 	health -= 1
+	blood_animator.play("hit")
+	
 
 func kill() -> void:
 	death_sound.stream = DEATH_SOUNDS.pick_random()
