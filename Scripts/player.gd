@@ -31,7 +31,7 @@ const DECELERATION_SPEED = 10.0
 var speed := WALK_SPEED
 var running := false
 
-var health := 10
+@export var health := 10
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
