@@ -86,6 +86,10 @@ func _physics_process(delta) -> void:
 
 	move_and_slide()
 
+@rpc("any_peer")
+func hit() -> void:
+	health -= 1
+
 func kill() -> void:
 	death_sound.stream = DEATH_SOUNDS.pick_random()
 	death_sound.play()

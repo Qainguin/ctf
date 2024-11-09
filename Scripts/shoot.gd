@@ -36,6 +36,8 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_pressed("shoot"):
 		barrel_velocity += 0.01
 	elif barrel_velocity < 0.0:
@@ -51,12 +53,12 @@ func _process(delta: float) -> void:
 	else:
 		shoot_light.light_energy = 0
 
+@rpc("any_peer")
 func shoot() -> void:
 	if is_colliding():
-		print("shot at %s" % str(get_collision_point()))
 		var collider = get_collider()
 		if collider.is_in_group("Players"):
-			collider.health -= 1
+			collider.hit.rpc_id(collider.get_multiplayer_authority())
 	owner.rotate_y(randf_range(-0.01, 0.01))
 	owner.pivot.rotate_x(0.02)
 
