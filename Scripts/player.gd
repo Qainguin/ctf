@@ -95,3 +95,4 @@ func kill() -> void:
 	death_sound.play()
 	death_animator.play("death")
 	position = get_parent().spawn_points.pick_random().position
+	health = 10
