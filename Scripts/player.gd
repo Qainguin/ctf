@@ -33,7 +33,11 @@ const DECELERATION_SPEED = 10.0
 var speed := WALK_SPEED
 var running := false
 
-@export var health := 10
+@export var health := 10:
+	set(value):
+		health = value
+		if is_multiplayer_authority():
+			blood_animator.play("hit")
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -91,8 +95,6 @@ func _physics_process(delta) -> void:
 @rpc("any_peer")
 func hit() -> void:
 	health -= 1
-	blood_animator.play("hit")
-	
 
 func kill() -> void:
 	death_sound.stream = DEATH_SOUNDS.pick_random()
