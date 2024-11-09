@@ -97,8 +97,9 @@ func hit() -> void:
 	health -= 1
 
 func kill() -> void:
-	death_sound.stream = DEATH_SOUNDS.pick_random()
-	death_sound.play()
-	death_animator.play("death")
+	if is_multiplayer_authority():
+		death_sound.stream = DEATH_SOUNDS.pick_random()
+		death_sound.play()
+		death_animator.play("death")
 	position = get_parent().spawn_points.pick_random().position
 	health = 10
