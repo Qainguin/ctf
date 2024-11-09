@@ -1,0 +1,120 @@
+# wacka33
+newmtl material_0
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_0.tga
+
+# sMCoprBs
+newmtl material_1
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_1.tga
+
+# sDavW2b
+newmtl material_2
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_2.tga
+
+# sMarblbs
+newmtl material_3
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_3.tga
+
+# sOrnSton
+newmtl material_4
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_4.tga
+
+# sHiWal2b
+newmtl material_5
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_5.tga
+
+# sHiWal2a
+newmtl material_6
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_6.tga
+
+# sCeilg1b
+newmtl material_7
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_7.tga
+
+# sDavW2
+newmtl material_8
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_8.tga
+
+# sMCopr1
+newmtl material_9
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_9.tga
+
+# sCeilg1a
+newmtl material_10
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_10.tga
+
+# sHiWal2c
+newmtl material_11
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_11.tga
+
+# runeSgn1
+newmtl material_12
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_12.tga
+
+# generic015n
+newmtl material_13
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_13.tga
+
+# agctf_bluesign
+newmtl material_14
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_14.tga
+
+# ground
+newmtl material_15
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_15.tga
+
+# runeSgn2
+newmtl material_16
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_16.tga
+
+# sFloorc
+newmtl material_17
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_17.tga
+
+# agctf_redsign
+newmtl material_18
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_18.tga
+
+# {gratestep3
+newmtl material_19
+Kd 1.0000 1.0000 1.0000
+illum 0
+map_Kd ctf_face_material_19.tga
+

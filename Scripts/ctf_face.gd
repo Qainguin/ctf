@@ -1,0 +1,59 @@
+extends Node3D
+
+const PLAYER = preload("res://Scenes/player.tscn")
+
+@onready var orbit: Node3D = $Orbit
+@onready var main_menu: CanvasLayer = $MainMenu
+
+var address := "192.168.50.112"
+var port := 7776
+var peer := ENetMultiplayerPeer.new()
+
+var spawn_points: Array[Marker3D] = []
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for sp in get_children():
+		if sp is Marker3D:
+			spawn_points.append(sp)
+
+func _process(delta: float) -> void:
+	orbit.rotate_y(delta / 2)
+
+func add_player(peer_id := 1) -> void:
+	print("adding player")
+	var p = PLAYER.instantiate()
+	p.name = str(peer_id)
+	var sp = spawn_points.pick_random()
+	p.position = sp.position
+	add_child(p, true)
+	p.owner = self
+
+func host() -> void:
+	peer.create_server(port)
+	multiplayer.multiplayer_peer = peer
+	multiplayer.multiplayer_peer.peer_connected.connect(add_player)
+	main_menu.hide()
+	orbit.get_child(0).current = false
+	add_player(1)
+	
+	upnp_setup()
+
+func upnp_setup() -> void:
+	var upnp = UPNP.new()
+	
+	var discovery_result = upnp.discover()
+	assert(discovery_result == UPNP.UPNP_RESULT_SUCCESS)
+	
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway())
+	
+	var map_result = upnp.add_port_mapping(port)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS)
+	
+	print("Success! Join Address: %s" % upnp.query_external_address())
+
+func join() -> void:
+	peer.create_client(address, port)
+	multiplayer.multiplayer_peer = peer
+	main_menu.hide()
+	orbit.get_child(0).current = false
