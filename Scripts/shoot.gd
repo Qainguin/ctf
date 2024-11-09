@@ -55,12 +55,13 @@ func _process(delta: float) -> void:
 
 @rpc("any_peer")
 func shoot() -> void:
-	if is_colliding():
-		var collider = get_collider()
-		if collider.is_in_group("Players"):
-			collider.hit.rpc_id(collider.get_multiplayer_authority())
-	owner.rotate_y(randf_range(-0.01, 0.01))
-	owner.pivot.rotate_x(0.02)
+	if is_multiplayer_authority():
+		if is_colliding():
+			var collider = get_collider()
+			if collider.is_in_group("Players"):
+				collider.hit.rpc_id(collider.get_multiplayer_authority())
+		owner.rotate_y(randf_range(-0.01, 0.01))
+		owner.pivot.rotate_x(0.02)
 
 func _on_draw_sound_finished() -> void:
 	if is_shooting:
