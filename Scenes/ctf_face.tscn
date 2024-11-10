@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://dt7nala26mqmn"]
+[gd_scene load_steps=58 format=4 uid="uid://dt7nala26mqmn"]
 
 [ext_resource type="LightmapGIData" uid="uid://dwmaurt58rmp0" path="res://Lightmaps/ctf_face.lmbake" id="1_5geix"]
 [ext_resource type="Texture2D" uid="uid://dh4unty2cmflb" path="res://panorama_image.png" id="1_gpc0d"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://sb7b6s3xeum5" path="res://Assets/Maps/ctf_face_ctf_face_material_18.png" id="21_tl3e0"]
 [ext_resource type="Texture2D" uid="uid://b88i8ddm75jfx" path="res://Assets/Maps/ctf_face_ctf_face_material_19.png" id="22_3744a"]
 [ext_resource type="Script" path="res://Scripts/kill_area.gd" id="26_y7uvg"]
+[ext_resource type="Script" path="res://Scripts/health_pack.gd" id="28_evqhu"]
+[ext_resource type="ArrayMesh" uid="uid://cqk17shoy7riv" path="res://Assets/Models/health_pack.Obj" id="28_qxtox"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aotgn"]
 panorama = ExtResource("1_gpc0d")
@@ -589,6 +591,9 @@ shadow_mesh = SubResource("ArrayMesh_yb3e6")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_omuy5"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_qxtox"]
+radius = 1.0
+
 [node name="FacingWorlds" type="Node3D"]
 script = ExtResource("1_omuy5")
 
@@ -751,6 +756,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -45, 0, 0)
 current = true
 
+[node name="HealthPack" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.50472, 0)
+script = ExtResource("28_evqhu")
+
+[node name="HealthMesh" type="MeshInstance3D" parent="HealthPack"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, -0.7, 0)
+mesh = ExtResource("28_qxtox")
+skeleton = NodePath("../..")
+
+[node name="HealthLight" type="OmniLight3D" parent="HealthPack"]
+light_color = Color(0, 1, 1, 1)
+
+[node name="Collider" type="CollisionShape3D" parent="HealthPack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+shape = SubResource("SphereShape3D_qxtox")
+
+[node name="CooldownTimer" type="Timer" parent="HealthPack"]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
+[connection signal="body_entered" from="HealthPack" to="HealthPack" method="_on_body_entered"]
+[connection signal="timeout" from="HealthPack/CooldownTimer" to="HealthPack" method="_on_cooldown_timer_timeout"]
 
 [editable path="Map/ctf_face2"]
