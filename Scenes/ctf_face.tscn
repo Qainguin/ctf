@@ -802,9 +802,11 @@ one_shot = true
 
 [node name="RedFlag" parent="." instance=ExtResource("30_e2fsw")]
 transform = Transform3D(-0.975492, 0, 0.220034, 0, 1, 0, -0.220034, 0, -0.975492, -0.366425, 4.18, 33.1111)
+collision_mask = 2
 
 [node name="BlueFlag" parent="." instance=ExtResource("31_pq5o8")]
 transform = Transform3D(0.984424, 0, 0.175813, 0, 1, 0, -0.175813, 0, 0.984424, -0.380526, 4.18, -33.2934)
+collision_mask = 2
 
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
 [connection signal="body_entered" from="KillArea2" to="KillArea2" method="_on_body_entered"]
