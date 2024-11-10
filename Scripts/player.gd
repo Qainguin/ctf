@@ -128,5 +128,5 @@ func kill() -> void:
 		death_sound.play()
 		death_animator.play("death")
 	var sp = randi_range(team*2, (team*2)+1)
-	position = get_parent().spawn_points[sp]
+	position = get_parent().spawn_points[sp].position
 	health = 10
