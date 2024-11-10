@@ -5,14 +5,14 @@ extends Area3D
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if not cooldown_timer.is_stopped():
-		if body.is_in_group("Players"):
-			body.health = 10
-			hide()
-			collider.disabled = true
-			cooldown_timer.start()
+	print("entered health pack")
+	if body is CharacterBody3D:
+		body.health = 10
+		hide()
+		set_deferred("monitoring", false)
+		cooldown_timer.start()
 
 
 func _on_cooldown_timer_timeout() -> void:
 	show()
-	collider.disabled = false
+	set_deferred("monitoring", true)

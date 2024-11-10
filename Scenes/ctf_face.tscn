@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://dt7nala26mqmn"]
+[gd_scene load_steps=61 format=4 uid="uid://dt7nala26mqmn"]
 
 [ext_resource type="LightmapGIData" uid="uid://dwmaurt58rmp0" path="res://Lightmaps/ctf_face.lmbake" id="1_5geix"]
 [ext_resource type="Texture2D" uid="uid://dh4unty2cmflb" path="res://panorama_image.png" id="1_gpc0d"]
@@ -599,11 +599,6 @@ radius = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_qxtox"]
 radius = 1.0
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pq5o8"]
-properties/0/path = NodePath(".:next_team")
-properties/0/spawn = true
-properties/0/replication_mode = 2
-
 [node name="FacingWorlds" type="Node3D"]
 script = ExtResource("1_omuy5")
 
@@ -767,6 +762,13 @@ script = ExtResource("26_y7uvg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
 shape = SubResource("WorldBoundaryShape3D_omuy5")
 
+[node name="KillArea2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.4107, 0)
+script = ExtResource("26_y7uvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea2"]
+shape = SubResource("WorldBoundaryShape3D_omuy5")
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/player.tscn")
 spawn_path = NodePath("..")
@@ -804,10 +806,8 @@ transform = Transform3D(-0.975492, 0, 0.220034, 0, 1, 0, -0.220034, 0, -0.975492
 [node name="BlueFlag" parent="." instance=ExtResource("31_pq5o8")]
 transform = Transform3D(0.984424, 0, 0.175813, 0, 1, 0, -0.175813, 0, 0.984424, -0.380526, 4.18, -33.2934)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_pq5o8")
-
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
+[connection signal="body_entered" from="KillArea2" to="KillArea2" method="_on_body_entered"]
 [connection signal="body_entered" from="HealthPack" to="HealthPack" method="_on_body_entered"]
 [connection signal="timeout" from="HealthPack/CooldownTimer" to="HealthPack" method="_on_cooldown_timer_timeout"]
 
