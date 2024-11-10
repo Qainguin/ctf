@@ -6,8 +6,6 @@ var being_carried := false
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Players"):
-		print(team)
-		print(body.team)
 		if team == body.team:
 			if body.carrying_flag:
 				Madden.scores[team] += 1

@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 	orbit.rotate_y(delta / 2)
 
 func add_player(peer_id := 1) -> void:
-	print("adding player")
 	var p = PLAYER.instantiate()
 	p.team = next_team
 	var sp = randi_range(next_team*2, (next_team*2)+1)
@@ -31,6 +30,8 @@ func add_player(peer_id := 1) -> void:
 	p.position = spawn_points[sp].position
 	add_child(p, true)
 	p.owner = self
+	
+	print("added player on team " + str(p.team))
 
 func remove_player(peer_id: int) -> void:
 	get_node(NodePath(str(peer_id))).queue_free()
