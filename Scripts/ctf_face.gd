@@ -27,10 +27,10 @@ func add_player(peer_id := 1) -> void:
 	p.team = next_team
 	var sp = next_team * 2
 	p.name = str(peer_id)
-	p.position = spawn_points[sp].position
-	p.position.y += 0.05
 	add_child(p, true)
 	p.owner = self
+	p.position = spawn_points[sp].position
+	p.position.y += 0.05
 	
 	print("added player on team " + str(p.team))
 
