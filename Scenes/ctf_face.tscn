@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dt7nala26mqmn"]
+[gd_scene load_steps=62 format=4 uid="uid://dt7nala26mqmn"]
 
 [ext_resource type="LightmapGIData" uid="uid://dwmaurt58rmp0" path="res://Lightmaps/ctf_face.lmbake" id="1_5geix"]
 [ext_resource type="Texture2D" uid="uid://dh4unty2cmflb" path="res://panorama_image.png" id="1_gpc0d"]
@@ -591,6 +591,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yb3e6")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pq5o8"]
+radius = 0.25
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_omuy5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qxtox"]
@@ -733,17 +736,29 @@ shape = SubResource("ConcavePolygonShape3D_5geix")
 [node name="ctf_face" parent="Map/ctf_face2" index="0"]
 mesh = SubResource("ArrayMesh_y83m8")
 
-[node name="RedSpawnPoint" type="Marker3D" parent="."]
+[node name="RedSpawnPoint" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 4.4, 30.2)
 
-[node name="RedSpawnPoint2" type="Marker3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RedSpawnPoint"]
+shape = SubResource("SphereShape3D_pq5o8")
+
+[node name="RedSpawnPoint2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 4.4, 30.2)
 
-[node name="BlueSpawnPoint" type="Marker3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RedSpawnPoint2"]
+shape = SubResource("SphereShape3D_pq5o8")
+
+[node name="BlueSpawnPoint" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 4.4, -30.2)
 
-[node name="BlueSpawnPoint2" type="Marker3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlueSpawnPoint"]
+shape = SubResource("SphereShape3D_pq5o8")
+
+[node name="BlueSpawnPoint2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 4.4, -30.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlueSpawnPoint2"]
+shape = SubResource("SphereShape3D_pq5o8")
 
 [node name="KillArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.89537, 0)

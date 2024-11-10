@@ -9,14 +9,14 @@ var address := "192.168.50.112"
 var port := 7776
 var peer := ENetMultiplayerPeer.new()
 
-var spawn_points: Array[Marker3D] = []
+var spawn_points: Array[Area3D] = []
 
 @export var next_team := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for sp in get_children():
-		if sp is Marker3D:
+		if sp.name.contains("SpawnPoint"):
 			spawn_points.append(sp)
 
 func _process(delta: float) -> void:

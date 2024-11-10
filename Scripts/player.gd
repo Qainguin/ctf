@@ -25,6 +25,7 @@ const DECELERATION_SPEED = 10.0
 @onready var red_flag: Area3D = $Pivot/RedFlag
 @onready var blue_flag: Area3D = $Pivot/BlueFlag
 @onready var shoot: RayCast3D = $Pivot/Shoot
+@onready var player_mesh: MeshInstance3D = $PlayerMesh
 
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
 
@@ -68,6 +69,8 @@ func _unhandled_input(event) -> void:
 
 func _physics_process(delta) -> void:
 	if not is_multiplayer_authority(): return
+	
+	player_mesh.visible = false
 
 	if carrying_flag:
 		if team == 0:

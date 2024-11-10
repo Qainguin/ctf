@@ -51,6 +51,7 @@
 [ext_resource type="AudioStream" uid="uid://cyua644df63d6" path="res://Assets/Audio/Announcer/winner.WAV" id="44_dj0x0"]
 [ext_resource type="AudioStream" uid="uid://ey23750d7t36" path="res://Assets/Audio/Announcer/you-may-proceed.WAV" id="45_f1uaf"]
 [ext_resource type="Texture2D" uid="uid://ct1blje1iup00" path="res://Assets/crosshair177.png" id="46_ax3m3"]
+[ext_resource type="ArrayMesh" uid="uid://v7nudwkglc7o" path="res://Assets/Models/blender.obj" id="52_57lvd"]
 
 [sub_resource type="Animation" id="Animation_3smsa"]
 length = 0.001
@@ -182,10 +183,6 @@ _data = {
 radius = 0.225
 height = 1.6
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_nmr2m"]
-radius = 0.225
-height = 1.6
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nmr2m"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -205,6 +202,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:team")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Pivot/Shoot/Minigun/Barrel:rotation:z")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 script = ExtResource("1_v0iea")
@@ -326,7 +326,8 @@ script = ExtResource("7_nmr2m")
 resources = [PackedStringArray("MMMMMONSTERKILL", "assist", "capture", "dominating", "double-kill", "eight", "failed", "first-blood", "five", "five-minutes-remaining", "four", "godlike", "headshot", "killing-spree", "last-place", "lost-the-lead", "lost-the-match", "megakill", "multikill", "nice-catch", "nine", "one", "one-minute-remaining", "prepare", "rampage", "seven", "six", "taken-the-lead", "ten", "thirty-seconds-left", "three", "three-minutes-remaining", "triple-kill", "two", "ultrakill", "unstoppable", "winner", "you-may-proceed"), [ExtResource("8_ax3m3"), ExtResource("9_3vlem"), ExtResource("10_8eeqe"), ExtResource("11_5x828"), ExtResource("12_c1k8q"), ExtResource("13_e6mvm"), ExtResource("14_57lvd"), ExtResource("15_ie7r7"), ExtResource("16_vq3lt"), ExtResource("17_pukcj"), ExtResource("18_1htnp"), ExtResource("19_m376e"), ExtResource("20_6b312"), ExtResource("21_lisdf"), ExtResource("22_n1x1j"), ExtResource("23_c8b32"), ExtResource("24_nj1g2"), ExtResource("25_usbl8"), ExtResource("26_dtg1u"), ExtResource("27_nuaet"), ExtResource("28_bqbau"), ExtResource("29_f5f5t"), ExtResource("30_qvbpb"), ExtResource("31_sscpr"), ExtResource("32_by7i4"), ExtResource("33_3uvy8"), ExtResource("34_ss172"), ExtResource("35_jmelf"), ExtResource("36_bjdqd"), ExtResource("37_feq18"), ExtResource("38_wcnj3"), ExtResource("39_jsob3"), ExtResource("40_pg0gw"), ExtResource("41_qavoy"), ExtResource("42_w4w4b"), ExtResource("43_h5cax"), ExtResource("44_dj0x0"), ExtResource("45_f1uaf")]]
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_nmr2m")
+transform = Transform3D(-0.01, 0, -8.74228e-10, 0, 0.01, 0, 8.74228e-10, 0, -0.01, -0.102156, 0, 0.195423)
+mesh = ExtResource("52_57lvd")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nmr2m")
