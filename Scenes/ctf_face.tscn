@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dt7nala26mqmn"]
+[gd_scene load_steps=61 format=4 uid="uid://dt7nala26mqmn"]
 
 [ext_resource type="LightmapGIData" uid="uid://dwmaurt58rmp0" path="res://Lightmaps/ctf_face.lmbake" id="1_5geix"]
 [ext_resource type="Texture2D" uid="uid://dh4unty2cmflb" path="res://panorama_image.png" id="1_gpc0d"]
@@ -596,6 +596,11 @@ shadow_mesh = SubResource("ArrayMesh_yb3e6")
 [sub_resource type="SphereShape3D" id="SphereShape3D_qxtox"]
 radius = 1.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pq5o8"]
+properties/0/path = NodePath(".:next_team")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
 [node name="FacingWorlds" type="Node3D"]
 script = ExtResource("1_omuy5")
 
@@ -783,6 +788,9 @@ transform = Transform3D(-0.975492, 0, 0.220034, 0, 1, 0, -0.220034, 0, -0.975492
 
 [node name="BlueFlag" parent="." instance=ExtResource("31_pq5o8")]
 transform = Transform3D(0.984424, 0, 0.175813, 0, 1, 0, -0.175813, 0, 0.984424, -0.380526, 4.18, -33.2934)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_pq5o8")
 
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
 [connection signal="body_entered" from="HealthPack" to="HealthPack" method="_on_body_entered"]

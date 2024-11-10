@@ -11,7 +11,7 @@ var peer := ENetMultiplayerPeer.new()
 
 var spawn_points: Array[Marker3D] = []
 
-var next_team := 0
+@export var next_team := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
