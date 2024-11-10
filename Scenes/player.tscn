@@ -215,6 +215,7 @@ properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
+collision_layer = 2
 script = ExtResource("1_v0iea")
 
 [node name="DeathOverlay" type="CanvasLayer" parent="."]
@@ -287,6 +288,7 @@ unique_name_in_owner = true
 
 [node name="Shoot" type="RayCast3D" parent="Pivot"]
 target_position = Vector3(0, 0, -100)
+collision_mask = 2
 script = ExtResource("2_6t5aa")
 
 [node name="Minigun" parent="Pivot/Shoot" instance=ExtResource("2_cvnsp")]
