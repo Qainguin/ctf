@@ -756,7 +756,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 4.4, -30.2)
 shape = SubResource("SphereShape3D_pq5o8")
 
 [node name="KillArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.89537, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44.0596, 0)
 script = ExtResource("26_y7uvg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
