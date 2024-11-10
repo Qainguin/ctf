@@ -32,10 +32,14 @@ func add_player(peer_id := 1) -> void:
 	add_child(p, true)
 	p.owner = self
 
+func remove_player(peer_id: int) -> void:
+	get_node(NodePath(str(peer_id))).queue_free()
+
 func host() -> void:
 	peer.create_server(port)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.multiplayer_peer.peer_connected.connect(add_player)
+	multiplayer.multiplayer_peer.peer_disconnected.connect(remove_player)
 	main_menu.hide()
 	orbit.get_child(0).current = false
 	add_player(1)
