@@ -16,7 +16,7 @@ var spawn_points: Array[Area3D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for sp in get_children():
-		if sp:
+		if sp is Area3D:
 			spawn_points.append(sp)
 
 func _process(delta: float) -> void:
