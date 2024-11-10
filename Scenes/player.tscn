@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bsjhox57elqyw"]
+[gd_scene load_steps=64 format=3 uid="uid://bsjhox57elqyw"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" path="res://Scripts/shoot.gd" id="2_6t5aa"]
@@ -183,6 +183,14 @@ _data = {
 radius = 0.225
 height = 1.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57lvd"]
+albedo_color = Color(0.54099, 0.54099, 0.54099, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie7r7"]
+shading_mode = 0
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nmr2m"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -328,6 +336,8 @@ resources = [PackedStringArray("MMMMMONSTERKILL", "assist", "capture", "dominati
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.01, 0, -8.74228e-10, 0, 0.01, 0, 8.74228e-10, 0, -0.01, -0.102156, 0, 0.195423)
 mesh = ExtResource("52_57lvd")
+surface_material_override/0 = SubResource("StandardMaterial3D_57lvd")
+surface_material_override/1 = SubResource("StandardMaterial3D_ie7r7")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nmr2m")
