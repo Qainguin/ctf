@@ -22,6 +22,9 @@ const DECELERATION_SPEED = 10.0
 
 @onready var pivot: Node3D = $Pivot
 @onready var camera: Camera3D = %Camera
+@onready var red_flag: Area3D = $Pivot/RedFlag
+@onready var blue_flag: Area3D = $Pivot/BlueFlag
+@onready var shoot: RayCast3D = $Pivot/Shoot
 
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
 
@@ -32,6 +35,11 @@ const DECELERATION_SPEED = 10.0
 
 var speed := WALK_SPEED
 var running := false
+
+var team := 0 # blue = 0, red = 1
+
+var carrying_flag := false
+var carried_flag: Node3D = null
 
 @export var health := 10:
 	set(value):
@@ -58,8 +66,23 @@ func _unhandled_input(event) -> void:
 			pivot.rotation.x = clampf(pivot.rotation.x, -1.57, 1.57)
 			return
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
+
 func _physics_process(delta) -> void:
 	if not is_multiplayer_authority(): return
+
+	if carrying_flag:
+		if team == 0:
+			red_flag.show()
+		else:
+			blue_flag.show()
+		shoot.hide()
+	else:
+		red_flag.hide()
+		blue_flag.hide()
+		shoot.show()
 	
 	camera.current = true
 	
@@ -104,5 +127,6 @@ func kill() -> void:
 		death_sound.stream = DEATH_SOUNDS.pick_random()
 		death_sound.play()
 		death_animator.play("death")
-	position = get_parent().spawn_points.pick_random().position
+	var sp = randi_range(team*2, (team*2)+1)
+	position = get_parent().spawn_points[sp]
 	health = 10

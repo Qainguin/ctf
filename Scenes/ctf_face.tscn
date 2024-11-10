@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://dt7nala26mqmn"]
+[gd_scene load_steps=60 format=4 uid="uid://dt7nala26mqmn"]
 
 [ext_resource type="LightmapGIData" uid="uid://dwmaurt58rmp0" path="res://Lightmaps/ctf_face.lmbake" id="1_5geix"]
 [ext_resource type="Texture2D" uid="uid://dh4unty2cmflb" path="res://panorama_image.png" id="1_gpc0d"]
@@ -29,6 +29,8 @@
 [ext_resource type="Script" path="res://Scripts/kill_area.gd" id="26_y7uvg"]
 [ext_resource type="Script" path="res://Scripts/health_pack.gd" id="28_evqhu"]
 [ext_resource type="ArrayMesh" uid="uid://cqk17shoy7riv" path="res://Assets/Models/health_pack.Obj" id="28_qxtox"]
+[ext_resource type="PackedScene" uid="uid://cdu2a6k45o34w" path="res://Scenes/red_flag.tscn" id="30_e2fsw"]
+[ext_resource type="PackedScene" uid="uid://cjjd4dba663eb" path="res://Scenes/blue_flag.tscn" id="31_pq5o8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aotgn"]
 panorama = ExtResource("1_gpc0d")
@@ -775,6 +777,12 @@ shape = SubResource("SphereShape3D_qxtox")
 [node name="CooldownTimer" type="Timer" parent="HealthPack"]
 wait_time = 15.0
 one_shot = true
+
+[node name="RedFlag" parent="." instance=ExtResource("30_e2fsw")]
+transform = Transform3D(-0.975492, 0, 0.220034, 0, 1, 0, -0.220034, 0, -0.975492, -0.366425, 4.18, 33.1111)
+
+[node name="BlueFlag" parent="." instance=ExtResource("31_pq5o8")]
+transform = Transform3D(0.984424, 0, 0.175813, 0, 1, 0, -0.175813, 0, 0.984424, -0.380526, 4.18, -33.2934)
 
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
 [connection signal="body_entered" from="HealthPack" to="HealthPack" method="_on_body_entered"]

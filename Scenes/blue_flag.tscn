@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjjd4dba663eb"]
+
+[ext_resource type="Texture2D" uid="uid://uy6sg8e77d4g" path="res://Assets/Textures/JpflagB.png" id="1_jo7bi"]
+[ext_resource type="Script" path="res://Scripts/flag.gd" id="1_pklte"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_snk6q"]
+albedo_color = Color(0.190326, 0.15907, 1, 1)
+metallic = 1.0
+roughness = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gplfj"]
+material = SubResource("StandardMaterial3D_snk6q")
+top_radius = 0.025
+bottom_radius = 0.025
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pklte"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_jo7bi")
+
+[sub_resource type="QuadMesh" id="QuadMesh_xm4tn"]
+material = SubResource("StandardMaterial3D_pklte")
+size = Vector2(1, 0.7)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jo7bi"]
+radius = 1.5
+
+[node name="BlueFlag" type="Area3D"]
+script = ExtResource("1_pklte")
+team = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_gplfj")
+
+[node name="SoftBody3D" type="SoftBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.506794, 0.624248, 0)
+mesh = SubResource("QuadMesh_xm4tn")
+total_mass = 1.01
+linear_stiffness = 0.18
+drag_coefficient = 0.3
+pinned_points = [143, 131, 119, 107, 95, 83, 71, 59, 47, 35, 23, 11]
+attachments/0/point_index = 143
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 131
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 119
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 107
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 95
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 83
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 71
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 59
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 47
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+attachments/9/point_index = 35
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3(0, 0, 0)
+attachments/10/point_index = 23
+attachments/10/spatial_attachment_path = NodePath("")
+attachments/10/offset = Vector3(0, 0, 0)
+attachments/11/point_index = 11
+attachments/11/spatial_attachment_path = NodePath("")
+attachments/11/offset = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_jo7bi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

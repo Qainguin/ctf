@@ -11,6 +11,8 @@ var peer := ENetMultiplayerPeer.new()
 
 var spawn_points: Array[Marker3D] = []
 
+var next_team := 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for sp in get_children():
@@ -23,9 +25,12 @@ func _process(delta: float) -> void:
 func add_player(peer_id := 1) -> void:
 	print("adding player")
 	var p = PLAYER.instantiate()
+	p.team = next_team
+	var sp = randi_range(next_team*2, (next_team*2)+1)
+	next_team += 1
+	next_team %= 2
 	p.name = str(peer_id)
-	var sp = spawn_points.pick_random()
-	p.position = sp.position
+	p.position = spawn_points[sp].position
 	add_child(p, true)
 	p.owner = self
 

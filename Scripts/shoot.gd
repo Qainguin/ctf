@@ -18,11 +18,16 @@ var barrel_velocity := 0.0
 var is_shooting := false
 var is_firing := false
 
+var can_shoot := true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	if not can_shoot: return
+	
 	if event.is_action("shoot"):
 		if event.is_pressed():
 			is_shooting = true
@@ -36,7 +41,12 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	can_shoot = visible
+	
 	if not is_multiplayer_authority(): return
+
+	if !can_shoot:
+		return
 	
 	if Input.is_action_pressed("shoot"):
 		barrel_velocity += 0.01
@@ -70,4 +80,5 @@ func _on_draw_sound_finished() -> void:
 		shoot_sound.play()
 
 func _on_shoot_timer_timeout() -> void:
-	shoot()
+	if can_shoot:
+		shoot()

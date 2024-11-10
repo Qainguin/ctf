@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bsjhox57elqyw"]
+[gd_scene load_steps=62 format=3 uid="uid://bsjhox57elqyw"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" path="res://Scripts/shoot.gd" id="2_6t5aa"]
@@ -6,13 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://uqly3d23gal0" path="res://Assets/Guns/minigun.glb" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://uqudyihusbhr" path="res://Textures/blood_overlay.tres" id="3_5x828"]
 [ext_resource type="AudioStream" uid="uid://bpjkwvd75ebl8" path="res://Assets/Audio/regfire.wav" id="4_vgqql"]
+[ext_resource type="Script" path="res://Scripts/scoreboard.gd" id="5_e6mvm"]
 [ext_resource type="AudioStream" uid="uid://4g8pmehrdwkk" path="res://Assets/Audio/draw.wav" id="5_fkybt"]
 [ext_resource type="AudioStream" uid="uid://rt3e0mmsam23" path="res://Assets/Audio/winddown.wav" id="5_x3wgy"]
 [ext_resource type="Script" path="res://Scripts/announcer.gd" id="7_nmr2m"]
 [ext_resource type="AudioStream" uid="uid://dd037qqman124" path="res://Assets/Audio/Announcer/MMMMMONSTERKILL.WAV" id="8_ax3m3"]
 [ext_resource type="AudioStream" uid="uid://b4kmb3dbws3rj" path="res://Assets/Audio/Announcer/assist.WAV" id="9_3vlem"]
 [ext_resource type="AudioStream" uid="uid://h53ie6fvnh2l" path="res://Assets/Audio/Announcer/capture.WAV" id="10_8eeqe"]
+[ext_resource type="PackedScene" uid="uid://cdu2a6k45o34w" path="res://Scenes/red_flag.tscn" id="10_c1k8q"]
 [ext_resource type="AudioStream" uid="uid://bjkly4q4v8cj4" path="res://Assets/Audio/Announcer/dominating.WAV" id="11_5x828"]
+[ext_resource type="PackedScene" uid="uid://cjjd4dba663eb" path="res://Scenes/blue_flag.tscn" id="11_e6mvm"]
 [ext_resource type="AudioStream" uid="uid://c640ijt0n508a" path="res://Assets/Audio/Announcer/double-kill.WAV" id="12_c1k8q"]
 [ext_resource type="AudioStream" uid="uid://ymal3w0y1udn" path="res://Assets/Audio/Announcer/eight.WAV" id="13_e6mvm"]
 [ext_resource type="AudioStream" uid="uid://bb3e6hjbvimbh" path="res://Assets/Audio/Announcer/failed.WAV" id="14_57lvd"]
@@ -240,6 +243,23 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("46_ax3m3")
 
+[node name="Scoreboard" type="PanelContainer" parent="HUD"]
+custom_minimum_size = Vector2(50, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 32.0
+offset_right = 20.0
+offset_bottom = 72.0
+grow_horizontal = 2
+script = ExtResource("5_e6mvm")
+
+[node name="Label" type="Label" parent="HUD/Scoreboard"]
+layout_mode = 2
+text = "2-0"
+horizontal_alignment = 1
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_f60y1")
 
@@ -281,6 +301,17 @@ wait_time = 0.08
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174567, -0.136422, -1.09198)
 light_color = Color(1, 0.423529, 0, 1)
 light_energy = 0.0
+
+[node name="RedFlag" parent="Pivot" instance=ExtResource("10_c1k8q")]
+transform = Transform3D(-0.0381622, -0.124823, 0.991445, -0.956305, 0.292372, 0, -0.28987, -0.948124, -0.130526, 0.195, 0, -0.7)
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="BlueFlag" parent="Pivot" instance=ExtResource("11_e6mvm")]
+visible = false
+monitoring = false
+monitorable = false
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 script = ExtResource("7_nmr2m")
