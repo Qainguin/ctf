@@ -1,8 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://bsjhox57elqyw"]
+[gd_scene load_steps=59 format=3 uid="uid://bsjhox57elqyw"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" path="res://Scripts/shoot.gd" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://cqcl107jj676o" path="res://Textures/heal_overlay.tres" id="2_8eeqe"]
 [ext_resource type="PackedScene" uid="uid://uqly3d23gal0" path="res://Assets/Guns/minigun.glb" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://uqudyihusbhr" path="res://Textures/blood_overlay.tres" id="3_5x828"]
 [ext_resource type="AudioStream" uid="uid://bpjkwvd75ebl8" path="res://Assets/Audio/regfire.wav" id="4_vgqql"]
 [ext_resource type="AudioStream" uid="uid://4g8pmehrdwkk" path="res://Assets/Audio/draw.wav" id="5_fkybt"]
 [ext_resource type="AudioStream" uid="uid://rt3e0mmsam23" path="res://Assets/Audio/winddown.wav" id="5_x3wgy"]
@@ -83,16 +85,6 @@ _data = {
 &"death": SubResource("Animation_x3wgy")
 }
 
-[sub_resource type="Gradient" id="Gradient_ax3m3"]
-colors = PackedColorArray(0, 0, 0, 0, 0.666667, 0, 0, 0.392157)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vlem"]
-gradient = SubResource("Gradient_ax3m3")
-width = 1280
-height = 720
-fill = 1
-fill_from = Vector2(0.504808, 0.512821)
-
 [sub_resource type="Animation" id="Animation_ax3m3"]
 resource_name = "hit"
 length = 0.5
@@ -107,6 +99,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_5x828")]
 }
 
 [sub_resource type="Animation" id="Animation_3vlem"]
@@ -123,10 +127,51 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_8eeqe")]
+}
+
+[sub_resource type="Animation" id="Animation_8eeqe"]
+resource_name = "heal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_8eeqe")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3vlem"]
 _data = {
 &"RESET": SubResource("Animation_3vlem"),
+&"heal": SubResource("Animation_8eeqe"),
 &"hit": SubResource("Animation_ax3m3")
 }
 
@@ -177,7 +222,7 @@ libraries = {
 modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = SubResource("GradientTexture2D_3vlem")
+texture = ExtResource("2_8eeqe")
 
 [node name="BloodAnimator" type="AnimationPlayer" parent="HUD/BloodOverlay"]
 libraries = {

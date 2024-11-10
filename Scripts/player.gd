@@ -35,9 +35,12 @@ var running := false
 
 @export var health := 10:
 	set(value):
-		health = value
 		if is_multiplayer_authority():
-			blood_animator.play("hit")
+			if health < value:
+				blood_animator.play("heal")
+			else:
+				blood_animator.play("hit")
+		health = value
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
