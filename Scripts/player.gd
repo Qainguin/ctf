@@ -36,9 +36,9 @@ const DECELERATION_SPEED = 10.0
 var speed := WALK_SPEED
 var running := false
 
-var team := 0 # blue = 0, red = 1
+@export var team := 0 # blue = 0, red = 1
 
-var carrying_flag := false
+@export var carrying_flag := false
 var carried_flag: Node3D = null
 
 @export var health := 10:
@@ -127,6 +127,11 @@ func kill() -> void:
 		death_sound.stream = DEATH_SOUNDS.pick_random()
 		death_sound.play()
 		death_animator.play("death")
+		
+		if carrying_flag:
+			carried_flag.show()
+			carried_flag.being_carried = false
+			carried_flag = null
 	var sp = randi_range(team*2, (team*2)+1)
 	position = get_parent().spawn_points[sp].position
 	health = 10
