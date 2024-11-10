@@ -128,6 +128,7 @@ func kill() -> void:
 			carried_flag.show()
 			carried_flag.being_carried = false
 			carried_flag = null
+			carrying_flag = false
 	var sp = randi_range(team*2, (team*2)+1)
 	position = get_parent().spawn_points[sp].position
 	health = 10
