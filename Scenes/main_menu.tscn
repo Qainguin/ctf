@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2i54yfl4ee8q"]
+[gd_scene load_steps=6 format=3 uid="uid://c2i54yfl4ee8q"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="FontFile" uid="uid://cyetiloh31ipa" path="res://Assets/Fonts/JetBrainsMono-ExtraBold.ttf" id="1_48xlc"]
@@ -8,6 +8,9 @@
 font = ExtResource("1_48xlc")
 font_size = 64
 font_color = Color(0.649557, 0.489987, 1, 1)
+
+[sub_resource type="Theme" id="Theme_1ehe0"]
+LineEdit/fonts/font = ExtResource("2_1ehe0")
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_1ehe0")
@@ -60,6 +63,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 text = "Join"
 
+[node name="TeamSpinBox" type="SpinBox" parent="CenterContainer/MainMenuPanel/MainMenuPanelMargin/MainMenuPanelCenter/MainMenuVBox"]
+layout_mode = 2
+theme = SubResource("Theme_1ehe0")
+max_value = 1.0
+alignment = 1
+prefix = "Team"
+
 [connection signal="text_changed" from="CenterContainer/MainMenuPanel/MainMenuPanelMargin/MainMenuPanelCenter/MainMenuVBox/AddressEdit" to="." method="_on_address_edit_text_changed"]
 [connection signal="pressed" from="CenterContainer/MainMenuPanel/MainMenuPanelMargin/MainMenuPanelCenter/MainMenuVBox/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CenterContainer/MainMenuPanel/MainMenuPanelMargin/MainMenuPanelCenter/MainMenuVBox/Join" to="." method="_on_join_pressed"]
+[connection signal="value_changed" from="CenterContainer/MainMenuPanel/MainMenuPanelMargin/MainMenuPanelCenter/MainMenuVBox/TeamSpinBox" to="." method="_on_team_spin_box_value_changed"]

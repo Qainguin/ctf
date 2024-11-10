@@ -36,7 +36,7 @@ const DECELERATION_SPEED = 10.0
 var speed := WALK_SPEED
 var running := false
 
-@export var team := 0 # blue = 0, red = 1
+@export var team: int # blue = 0, red = 1
 
 @export var carrying_flag := false
 var carried_flag: Node3D = null

@@ -27,8 +27,6 @@ func add_player(peer_id := 1) -> void:
 	var p = PLAYER.instantiate()
 	p.team = next_team
 	var sp = randi_range(next_team*2, (next_team*2)+1)
-	next_team += 1
-	next_team %= 2
 	p.name = str(peer_id)
 	p.position = spawn_points[sp].position
 	add_child(p, true)
