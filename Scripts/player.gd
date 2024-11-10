@@ -66,10 +66,6 @@ func _unhandled_input(event) -> void:
 			pivot.rotation.x = clampf(pivot.rotation.x, -1.57, 1.57)
 			return
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("quit"):
-		get_tree().quit()
-
 func _physics_process(delta) -> void:
 	if not is_multiplayer_authority(): return
 
