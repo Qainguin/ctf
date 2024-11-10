@@ -757,6 +757,7 @@ shape = SubResource("SphereShape3D_pq5o8")
 
 [node name="KillArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44.0596, 0)
+collision_mask = 3
 script = ExtResource("26_y7uvg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
@@ -764,6 +765,7 @@ shape = SubResource("WorldBoundaryShape3D_omuy5")
 
 [node name="KillArea2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.4107, 0)
+collision_mask = 3
 script = ExtResource("26_y7uvg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea2"]
