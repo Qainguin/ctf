@@ -72,7 +72,7 @@ func _physics_process(delta) -> void:
 	
 	player_mesh.visible = false
 	
-	var mat = player_mesh.get_surface_override_material(1)
+	var mat = player_mesh.get_surface_override_material(1).duplicate()
 	if team == 0:
 		mat.albedo_color = Color.RED
 	else:
